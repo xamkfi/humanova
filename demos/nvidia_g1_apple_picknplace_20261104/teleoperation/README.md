@@ -6,10 +6,6 @@ the plate. Practise the task, record successful demonstrations to HDF5, and
 replay your recordings. The separate
 [evaluation folder](../evaluation/README.md) is reserved for the Thor workflow.
 
-Everything maintained for this demo lives in this directory. The launchers create
-an independent Arena checkout, Docker image, and container. They do not change
-an existing `~/IsaacLab-Arena` installation.
-
 ## Requirements
 
 See [requirements.txt](requirements.txt) for the host prerequisites, headset,
@@ -282,30 +278,8 @@ built image for an exact runtime snapshot.
 Arena files retain their Apache-2.0 notices; see the
 [upstream license](https://github.com/isaac-sim/IsaacLab-Arena/blob/8b4a3a47fc53de23e8205089d71109a2e2348acd/LICENSE.md).
 
-## Troubleshooting
 
-| Symptom | Action |
-|---|---|
-| Docker permission denied | Check Docker group/context and log into the desktop again after changing groups. Run as your desktop user. |
-| Container cannot see GPU | Check `nvidia-smi` and NVIDIA Container Toolkit configuration, then inspect Docker's error. |
-| Window cannot open | Check `DISPLAY`, `XAUTHORITY`, and XWayland. Run from the local desktop. The launcher grants X11 access only to your current local user. |
-| CloudXR license exits | Restart `cloudxr` in an interactive terminal and answer its license prompt. |
-| CloudXR reports a port in use | Stop the older CloudXR session normally. Inspect `ss -lntup`; do not kill an unidentified process. |
-| `teleop` or `record` says CloudXR is not ready | Wait for terminal 1 to print that the runtime and WSS proxy are running, then retry. |
-| Recording file already exists | Select a new `--dataset-file` for the next session. |
-| Dataset is missing for replay | Check `--dataset-file` relative to `DEMO_STATE_DIR/datasets`. |
-| A second session exits with code 75 | This demo already has that CloudXR or teleoperation session running. |
-| Headset cannot connect | Recheck LAN IP, local certificate acceptance, firewall, and Wi-Fi client isolation. |
-| Controls disappear | Wear the headset before starting XR; move the virtual control panel into view. |
-| Robot jumps after reset | Pause with Stop before resetting or moving the controllers back to their initial poses; press Play when ready. |
-| Apple falls through on first load | Allow asset loading to finish, then restart once to use the warmed asset/collision cache. |
-| Container name belongs to another setup | Choose a unique `DEMO_CONTAINER` in `.env`. |
-| Managed source or versions changed | Preserve your work and choose a fresh `DEMO_STATE_DIR`; setup never resets edited sources. |
-
-## References
 
 - [Original NVIDIA simulation setup](https://docs.nvidia.com/learning/physical-ai/gr00t-e2e-workflow/latest/simulation-workflow/sim-setup-isaac-lab-arena.html)
 - [NVIDIA VR teleoperation workflow](https://docs.nvidia.com/learning/physical-ai/gr00t-e2e-workflow/latest/simulation-workflow/sim-teleop-and-wbc.html)
 - [Isaac Teleop](https://nvidia.github.io/IsaacTeleop/)
-- Original local notebook: `/home/vaeinoe/Instructions/gr00t_server_evaluation.ipynb`
-  (reference only; not needed after cloning).
