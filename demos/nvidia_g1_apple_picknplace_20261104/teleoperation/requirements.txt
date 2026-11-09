@@ -1,0 +1,48 @@
+# Teleoperation demo requirements
+#
+# HOST PYTHON
+# Python 3.10 or newer. The launcher uses only Python's standard library.
+# There are no third-party host Python packages to install with pip.
+# All entries below are comments so this remains a valid pip requirements file.
+#
+# HOST SYSTEM
+# - Linux x86_64 with a local graphical desktop: X11 or Wayland with XWayland.
+# - An RTX GPU and NVIDIA driver compatible with the pinned Isaac Sim image.
+# - Docker Engine, accessible by the desktop user without sudo.
+# - NVIDIA Container Toolkit, configured for GPU containers and the nvidia runtime.
+# - Bash, Git, Git LFS, Python 3, and xhost.
+#
+# Ubuntu command-line tools:
+#   sudo apt-get update
+#   sudo apt-get install -y git git-lfs python3 x11-xserver-utils
+#   git lfs install
+#
+# Docker, the NVIDIA driver, and NVIDIA Container Toolkit are separate host
+# installations. The apt command above installs the command-line tools only.
+#
+# HEADSET, NETWORK, AND STORAGE
+# - A supported OpenXR headset, such as Meta Quest 3 or PICO 4 Ultra,
+#   with controllers and a browser.
+# - Network connectivity between the headset and workstation.
+# - CloudXR ports: 49100/tcp, 47998/udp, and 48322/tcp for the HTTPS proxy.
+# - Internet access for source downloads, image builds, assets, and headset client.
+# - Budget at least 100 GB of free SSD space for images, sources, and caches,
+#   plus space for recorded datasets.
+#
+# INSTALLED INSIDE DOCKER BY ./demo.sh setup
+# - NVIDIA Isaac Sim from the base image specified in config.env.
+# - Isaac Lab and Isaac Lab-Arena from pinned source revisions.
+# - Isaac Teleop with its bundled CloudXR runtime.
+# - ffmpeg and the simulation, camera, HDF5 recording, and replay dependencies.
+#
+# Source and base-image pins are maintained in config.env. Python dependencies
+# follow the unmodified upstream Dockerfile. Source code is downloaded under
+# DEMO_STATE_DIR; the runtime Python environment is installed inside the image.
+#
+# REFERENCE WORKSTATION
+# NVIDIA GeForce RTX 4090 (24 GB), driver 580.65.06.
+# The built base Arena image is approximately 41 GB.
+#
+# INSTALLATION REFERENCES
+# https://docs.isaacsim.omniverse.nvidia.com/latest/installation/requirements.html
+# https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
